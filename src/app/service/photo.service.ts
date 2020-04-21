@@ -9,6 +9,7 @@ const {Camera, Filesystem, Storage} = Plugins;
 export class PhotoService {
 
     public photos: PhotoInterface[] = [];
+    private PHOTO_STORAGE: string = 'photos';
 
     constructor() {
     }
@@ -21,6 +22,27 @@ export class PhotoService {
         });
         const saveImageFile = await this.savePicture(capturePhoto);
         this.photos.unshift(saveImageFile);
+        Storage.set({
+            key: this.PHOTO_STORAGE,
+            value: JSON.stringify(this.photos.map(p => {
+                const photoCopy = {...p};
+                delete photoCopy.base64;
+                return photoCopy;
+            }))
+        })
+    }
+
+    public async loadSaved() {
+        const photos = await Storage.get({key: this.PHOTO_STORAGE});
+        this.photos = JSON.parse(photos.value) || [];
+        for (let photo of this.photos) {
+            const readFile = await Filesystem.readFile({
+                path: photo.filePath,
+                directory: FilesystemDirectory.Data,
+            });
+            console.log(readFile.data);
+            photo.base64 = `data:image/jpeg;base64,${readFile.data}`;
+        }
     }
 
     private async savePicture(cameraPhoto: CameraPhoto): Promise<PhotoInterface> {
