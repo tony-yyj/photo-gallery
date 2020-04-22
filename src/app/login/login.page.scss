@@ -1,0 +1,23 @@
+$white-color: #fff;
+$height100: 100%;
+
+ion-grid {
+    width:100%;
+    height: $height100;
+}
+ion-row {
+    height: $height100;
+}
+.logo{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+}
+.forget-password{
+    display: flex;
+    justify-content: flex-end;
+}
+.login-btn{
+    margin: 20px 0 10px 0;
+}

@@ -1,0 +1,38 @@
+<!--<ion-header>-->
+<!--    <ion-toolbar>-->
+<!--        <ion-title>login</ion-title>-->
+<!--    </ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center" size="8">
+                <div class="logo">
+<!--                    <ion-thumbnail slot="start">-->
+<!--                        <ion-img src="assets/images/logon.png"></ion-img>-->
+<!--                    </ion-thumbnail>-->
+                    <img src="../../assets/images/logo.png"/>
+                </div>
+                <ion-item class="ion-no-padding">
+                    <ion-label>账号</ion-label>
+                    <ion-input></ion-input>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label>密码</ion-label>
+                    <ion-input #targetInput type="password"></ion-input>
+                    <ion-button class="showhidePass" passwordToggle [appTargetInput]="targetInput" fill="clear" type="button">
+                        <ion-icon name="eye"></ion-icon>
+                    </ion-button>
+                </ion-item>
+                <div class="login-btn">
+                    <ion-button expand="block" color="primary" (click)="submit()">登录</ion-button>
+                </div>
+                <div class="forget-password ion-justify-content-end">
+                    <ion-button class="ion-justify-content-end" fill="clear" size="small">忘记密码</ion-button>
+                </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
